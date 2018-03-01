@@ -21,10 +21,7 @@ The script also makes the following assumptions that cannot be changed at the mo
 
 If your current web server checks some or all of these boxes then you should be OK with running the installer on an already configured box.
 
-If you're not happy with my exquisite choice of packages and services then you'll have to clean up the mess after the installation or install Phabricator by hand (see intro text above).
-
-### Additional Goodies
-- Installation of an update script and optional scheduling of automatic Phabricator updates. It will be located in the root of the Phabricator installation directory
+If you're not happy with my exquisite choice of packages and services then you'll have to clean up the mess after the installation or install Phabricator by hand.
 
 ## How to use?
 Download the latest version to your Debian box. You can just copy & paste the following which should download and automatically run the installer:
@@ -33,6 +30,23 @@ Download the latest version to your Debian box. You can just copy & paste the fo
 wget https://raw.githubusercontent.com/tiguchi/phabricator-installer/master/phabricator-installer.sh && /bin/bash ./phabricator-installer.sh
 ```
 
+## How to Update Phabricator after Installation 
+
+The installer also generates a Phabricator upgrade script that fetches the latest (stable)
+changes from GitHub and performs a MySQL database storage upgrade.
+
+The script can be found in the Phabricator installation directory you specify during
+the installation. By default it is:
+
+```
+/srv/www/<Phabricator Domain>/upgrade.sh
+```
+
+### Warning
+
+The upgrade will perform a hard reset on the 3 checked out git repositories `libphutil`, `arcanist` and `phabricator`,
+so any changes you do to tracked files will get lost. This should be fine in most cases
+since Phabricator can be fully configured without modifying any source files.
 
 ## Your Contributions
 I'm not sure how much time I can spare for continuous additions and maintenance work on this script. I created this script primarily for my own specific needs. But:
