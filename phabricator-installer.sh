@@ -988,14 +988,12 @@ function update_repo() {
 }
 
 if [[ -f "\$NGINX_ENABLED" ]]; then
+    info "Disabling Phabricator website..."
 	sudo rm "\$NGINX_ENABLED"
 	sudo service nginx reload
+    ok "Phabricator website disabled"
 fi
 
-info "Disabling Phabricator website..."
-sudo rm "\$NGINX_ENABLED"
-sudo service nginx reload
-ok "Phabricator website disabled"
 info "Stopping repository SSH daemon..."
 sudo service ssh-phabricator stop
 ok "Repository SSH daemon stopped"
