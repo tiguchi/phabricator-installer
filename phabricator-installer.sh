@@ -476,7 +476,7 @@ NGINX_USER="www-data"
 header "SSL Configuration"
 
 if confirm "Would you like to use Let's Encrypt for securing Phabricator with a free SSL certificate (recommended)?" "Y"; then
-	SSL_CERTIFICATE="/etc/letsencrypt/live/$DOMAIN_NAME/cert.pem"
+	SSL_CERTIFICATE="/etc/letsencrypt/live/$DOMAIN_NAME/fullchain.pem"
 	SSL_CERTIFICATE_KEY="/etc/letsencrypt/live/$DOMAIN_NAME/privkey.pem"
 
 	if ! check_is_installed certbot; then
