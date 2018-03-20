@@ -485,7 +485,7 @@ if confirm "Would you like to use Let's Encrypt for securing Phabricator with a 
 	fi
 
 	info "Running certbot for creating a certificate for $DOMAIN_NAME"
-	sudo certbot -d "$DOMAIN_NAME" --rsa-key-size 4096 --manual --preferred-challenges dns certonly
+	sudo certbot certonly --rsa-key-size 4096 --authenticator standalone -d "$DOMAIN_NAME" --pre-hook "nginx -s stop" --post-hook "nginx"
 else
 	if confirm "Would you like to use your own SSL certificate? (y = provide file paths, n = auto-generate self-signed cert)" "N"; then
 		echo
