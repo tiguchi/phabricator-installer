@@ -877,8 +877,7 @@ ok "ws package installed with npm"
 write_config "/etc/systemd/system/$APHLICT_SERVICE" "root" <<EOF
 [Unit]
 Description=Phabricator notification server
-After=syslog.target network.target mysql.service nginx.service
-Before=phabricator.service
+After=syslog.target network.target mysql.service nginx.service phabricator.service
 
 [Service]
 Type=forking
