@@ -1087,9 +1087,12 @@ ssh_config "Port" "$MAINTENANCE_SSH_PORT"
 sudo systemctl daemon-reload
 
 sudo service "${PHP_VERSION}-fpm" restart
+sudo systemctl enable phabricator.service
 sudo service phabricator start
+sudo systemctl enable aphlict.service
 sudo service aphlict start
 sudo service ssh restart
+sudo systemctl enable ssh-phabricator.service
 sudo service ssh-phabricator start
 sudo service nginx restart
 
