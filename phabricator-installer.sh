@@ -72,7 +72,7 @@ shopt -s nocasematch
 
 function update_base_packages() {
 	# Basic packages (min requirement)
-	PACKAGES="git pwgen logrotate dnsutils sendmail nginx mysql-client python-pygments $PHP_VERSION $PHP_VERSION-fpm $PHP_VERSION-mysql $PHP_VERSION-gd $PHP_VERSION-curl $PHP_VERSION-apcu $PHP_VERSION-cli $PHP_VERSION-json $PHP_VERSION-dev $PHP_VERSION-mbstring"
+	PACKAGES="git pwgen logrotate dnsutils nginx mysql-client python-pygments $PHP_VERSION $PHP_VERSION-fpm $PHP_VERSION-mysql $PHP_VERSION-gd $PHP_VERSION-curl $PHP_VERSION-apcu $PHP_VERSION-cli $PHP_VERSION-json $PHP_VERSION-dev $PHP_VERSION-mbstring"
 }
 
 # Run something as the specified user
@@ -822,6 +822,21 @@ ph_config "phabricator.base-uri" "https://$DOMAIN_NAME/"
 ph_config "storage.local-disk.path" "$FILE_STORAGE_PATH"
 ph_config "repository.default-local-path" "$REPO_PATH"
 ph_config "diffusion.ssh-user" "$VCS_USER"
+ph_config "notification.servers" "[
+  {
+    \"type\": \"client\",
+    \"host\": \"$DOMAIN_NAME\",
+    \"port\": 443,
+    \"protocol\": \"https\",
+    \"path\": \"/ws/\"
+  },
+  {
+    \"type\": \"admin\",
+    \"host\": \"127.0.0.1\",
+    \"port\": 22281,
+    \"protocol\": \"http\"
+  }
+]"
 
 # --------------------------------------------------------------------------------------------
 header "Installing new Services"
